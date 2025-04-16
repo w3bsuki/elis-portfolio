@@ -1,42 +1,54 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HiMenuAlt3, HiX } from 'react-icons/hi';
-import Link from 'next/link';
-import { MyLinks } from './Header';
-import { ThemeToggle } from '../ui/theme-toggle';
+import { HiBars3 } from 'react-icons/hi2';
+import { HiX } from 'react-icons/hi';
+import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
+import { useTheme } from 'next-themes';
+import { NAV_LINKS } from '@/constants';
+import { SideBarLink } from './SideBarLink';
 
-interface NavLink {
-  name: string;
-  href: string;
+interface ThemeToggleProps {
+  className?: string;
 }
 
-const navLinks: NavLink[] = [
-  { name: 'За мен', href: '#about' },
-  { name: 'Проекти', href: '#projects' },
-  { name: 'Услуги', href: '#services' },
-  { name: 'Блог', href: '#blog' },
-  { name: 'Контакт', href: '#contact' },
-];
+export const ThemeToggle = ({ className }: ThemeToggleProps) => {
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === 'dark';
+
+  return (
+    <button
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      className={`flex h-10 w-10 items-center justify-center rounded-md text-foreground hover:bg-secondary transition-colors ${className}`}
+      aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+    >
+      {isDark ? (
+        <MdOutlineLightMode className="h-5 w-5" />
+      ) : (
+        <MdOutlineDarkMode className="h-5 w-5" />
+      )}
+    </button>
+  );
+};
 
 export const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
 
   return (
     <div className="md:hidden">
-      <button 
-        onClick={toggleMenu} 
-        className="p-2 text-foreground/80 hover:text-green-500 transition-colors dark:hover:text-primary" 
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-      >
-        {isOpen ? (
-          <HiX className="h-6 w-6" />
-        ) : (
-          <HiMenuAlt3 className="h-6 w-6" />
-        )}
-      </button>
+      <div className="flex items-center gap-2">
+        <ThemeToggle />
+        <button
+          onClick={() => setIsOpen(true)}
+          className="flex h-11 w-11 items-center justify-center rounded-md bg-secondary text-foreground hover:bg-green-500 hover:text-white transition-colors"
+          aria-label="Open menu"
+        >
+          <HiBars3 className="h-6 w-6" />
+        </button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
@@ -57,41 +69,35 @@ export const MobileNav = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="fixed top-0 right-0 h-full w-64 bg-background border-l border-border z-50 overflow-y-auto"
+              className="fixed top-0 right-0 h-full w-3/4 bg-background border-l border-border z-50 overflow-y-auto"
             >
               <div className="flex justify-end p-4">
                 <button 
                   onClick={closeMenu} 
-                  className="p-2 text-foreground/80 hover:text-green-500 transition-colors dark:hover:text-primary"
+                  className="h-11 w-11 flex items-center justify-center rounded-md text-foreground/80 hover:text-green-500 hover:bg-secondary/80 transition-colors"
                   aria-label="Close menu"
                 >
                   <HiX className="h-6 w-6" />
                 </button>
               </div>
 
-              <nav className="px-6 py-4">
-                <ul className="space-y-6">
-                  {navLinks.map((link) => (
-                    <li key={link.href}>
-                      <Link 
-                        href={link.href}
-                        className="text-lg font-medium text-foreground/80 hover:text-green-500 transition-colors block py-2 dark:hover:text-primary"
-                        onClick={closeMenu}
-                      >
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-10 pt-6 border-t border-border">
-                  <div className="flex items-center justify-between mb-4">
-                    <p className="text-sm text-muted-foreground">Свържете се с мен</p>
-                    <ThemeToggle />
-                  </div>
-                  <MyLinks />
-                </div>
-              </nav>
+              <div className="p-6 pt-0">
+                <nav>
+                  <ul className="flex flex-col space-y-6">
+                    {NAV_LINKS.map((link) => (
+                      <li key={link.route}>
+                        <SideBarLink
+                          label={link.label}
+                          route={link.route}
+                          icon={link.icon}
+                          onClick={closeMenu}
+                          className="text-lg py-3 px-4 flex items-center gap-3 rounded-md hover:bg-secondary/80 transition-colors font-medium"
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
             </motion.div>
           </>
         )}

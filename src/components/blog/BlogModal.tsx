@@ -1,12 +1,11 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useMemo } from "react";
 import { HiOutlineX } from "react-icons/hi";
-import { BiCalendar, BiUser, BiTimeFive, BiShare, BiBookmark } from "react-icons/bi";
+import { BiCalendar, BiUser, BiTimeFive, BiShare, BiBookmark, BiLink } from "react-icons/bi";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import { IoClose, IoArrowBack } from "react-icons/io5";
-import { BiFacebook, BiTwitter, BiLinkAlt } from "react-icons/bi";
 
 interface Props {
   isOpen: boolean;
@@ -134,19 +133,19 @@ export const BlogModal = ({
                           className="text-zinc-600 dark:text-zinc-400 hover:text-green-500 dark:hover:text-green-400 transition-colors"
                           aria-label="Share on Facebook"
                         >
-                          <BiFacebook className="w-5 h-5" />
+                          <FaFacebookF className="w-5 h-5" />
                         </button>
                         <button 
                           className="text-zinc-600 dark:text-zinc-400 hover:text-green-500 dark:hover:text-green-400 transition-colors"
                           aria-label="Share on Twitter"
                         >
-                          <BiTwitter className="w-5 h-5" />
+                          <FaTwitter className="w-5 h-5" />
                         </button>
                         <button 
                           className="text-zinc-600 dark:text-zinc-400 hover:text-green-500 dark:hover:text-green-400 transition-colors"
                           aria-label="Copy link"
                         >
-                          <BiLinkAlt className="w-5 h-5" />
+                          <BiLink className="w-5 h-5" />
                         </button>
                       </div>
                     </div>

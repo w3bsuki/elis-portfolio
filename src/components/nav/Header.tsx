@@ -2,8 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { SiCodepen, SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { OutlineButton } from "../buttons/OutlineButton";
-import { MobileNav } from "./MobileNav";
-import { ThemeToggle } from "../ui/theme-toggle";
+import { MobileNav, ThemeToggle } from "./MobileNav";
 
 export const Header = () => {
   return (
@@ -18,7 +17,7 @@ export const Header = () => {
       </div>
       
       <div className="flex items-center gap-3">
-        <ThemeToggle />
+        <ThemeToggle className="hidden md:flex" />
         <OutlineButton 
           className="hidden md:flex before:bg-green-500 hover:text-white hover:border-green-500 dark:before:bg-primary dark:hover:border-primary"
           onClick={() => window.open("/resume.pdf")}

@@ -67,9 +67,14 @@ const AvatarModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
+                  // Make sure fallback is visible
+                  const fallback = target.nextElementSibling;
+                  if (fallback) {
+                    fallback.classList.add('flex');
+                  }
                 }}
               />
-              <AvatarFallback className="text-xl font-semibold text-green-500 dark:text-primary bg-secondary">ЕД</AvatarFallback>
+              <AvatarFallback className="text-xl font-semibold text-green-500 dark:text-primary bg-secondary flex items-center justify-center">ЕД</AvatarFallback>
             </Avatar>
             <h4 className="text-lg font-semibold text-green-500 dark:text-primary">Елис Димитрова</h4>
             <p className="text-sm text-muted-foreground">Психолог & Автор</p>
@@ -379,9 +384,14 @@ const Hero = () => {
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.style.display = 'none';
+                        // Make sure fallback is visible
+                        const fallback = target.nextElementSibling;
+                        if (fallback) {
+                          fallback.classList.add('flex');
+                        }
                       }}
                     />
-                    <AvatarFallback className="text-xl font-semibold text-green-500 dark:text-primary bg-secondary">ЕД</AvatarFallback>
+                    <AvatarFallback className="text-xl font-semibold text-green-500 dark:text-primary bg-secondary flex items-center justify-center">ЕД</AvatarFallback>
                   </Avatar>
                   {/* Simplified pulse effect to avoid rendering issues */}
                   <span className="absolute inset-0 rounded-full bg-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity" />

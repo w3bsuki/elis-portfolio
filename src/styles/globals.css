@@ -95,16 +95,16 @@ body:has([role="dialog"][aria-modal="true"]) {
   }
 }
 
-/* Light mode default styles for text and backgrounds */
+/* Light mode default styles for text and backgrounds - improved contrast */
 h1, h2, h3, h4, h5, h6 {
-  @apply text-foreground;
+  @apply text-foreground font-medium;
 }
 
 p, span, div {
   @apply text-foreground;
 }
 
-/* Fix for specific zinc classes in light mode */
+/* Improved contrast for light mode */
 .bg-zinc-900 {
   @apply bg-background;
 }
@@ -117,7 +117,7 @@ p, span, div {
   @apply border-border;
 }
 
-/* Text color fixes for light mode */
+/* Enhanced text color fixes for light mode with better contrast */
 .text-white, .text-zinc-50 {
   @apply text-foreground;
 }
@@ -131,6 +131,31 @@ p, span, div {
 .text-zinc-400, 
 .text-zinc-500 {
   @apply text-muted-foreground;
+}
+
+/* Mobile specific improvements */
+@media (max-width: 768px) {
+  h1 {
+    @apply text-3xl font-bold;
+  }
+  
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+  
+  p {
+    @apply text-base;
+  }
+  
+  /* Ensure buttons have good visibility */
+  button, a {
+    @apply min-h-10 min-w-20;
+  }
+  
+  /* Improve input field contrast */
+  input, textarea, select {
+    @apply border-2 border-input;
+  }
 }
 
 /* Dark mode styles remain the same */
@@ -163,12 +188,4 @@ p, span, div {
 
 .dark .bg-green-500 {
   @apply bg-primary;
-}
-
-.dark .text-green-500 {
-  @apply text-primary;
-}
-
-.dark .border-green-500 {
-  @apply border-primary;
 }
