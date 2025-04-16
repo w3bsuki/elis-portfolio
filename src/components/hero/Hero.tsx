@@ -483,14 +483,13 @@ const Hero = () => {
             <motion.div
               initial={{ y: 30, opacity: 0 }}
               animate={{ 
-                y: 0, 
-                opacity: 1,
+                opacity: 1, 
                 rotateZ: bookAnimation ? [0, 2, 0, -1, 0] : 0,
-                y: bookAnimation ? [0, -12, -8, -10, 0] : 0
+                translateY: bookAnimation ? [0, -12, -8, -10, 0] : 0
               }}
               transition={{ 
                 opacity: { duration: 0.8, ease: "easeOut" },
-                y: { 
+                translateY: {
                   duration: 6,
                   repeat: Infinity,
                   repeatType: "reverse",
