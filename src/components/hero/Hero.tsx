@@ -33,7 +33,7 @@ const AvatarModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
   // Create the modal content
   const content = (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
       onClick={onClose}
     >
       <motion.div
@@ -42,15 +42,15 @@ const AvatarModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.2 }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-md overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 p-6 text-left align-middle shadow-xl"
+        className="w-full max-w-md overflow-hidden rounded-lg border border-border bg-background p-6 text-left align-middle shadow-xl"
       >
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xl font-bold leading-6 text-green-500">
+          <h3 className="text-xl font-bold leading-6 text-green-500 dark:text-primary">
             За мен
           </h3>
           <button
             type="button"
-            className="text-zinc-300 hover:text-white transition-colors"
+            className="text-foreground/70 hover:text-foreground transition-colors"
             onClick={onClose}
             aria-label="Затвори диалога"
             title="Затвори"
@@ -58,7 +58,7 @@ const AvatarModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
             <MdClose />
           </button>
         </div>
-        <div className="mt-2 text-zinc-300">
+        <div className="mt-2">
           <div className="text-center mb-4">
             <Avatar size="lg" className="mx-auto mb-4">
               <AvatarImage 
@@ -69,18 +69,18 @@ const AvatarModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
                   target.style.display = 'none';
                 }}
               />
-              <AvatarFallback className="text-xl font-semibold text-green-500 bg-zinc-800">ЕД</AvatarFallback>
+              <AvatarFallback className="text-xl font-semibold text-green-500 dark:text-primary bg-secondary">ЕД</AvatarFallback>
             </Avatar>
-            <h4 className="text-lg font-semibold text-green-500">Елис Димитрова</h4>
-            <p className="text-sm text-zinc-400">Психолог & Автор</p>
+            <h4 className="text-lg font-semibold text-green-500 dark:text-primary">Елис Димитрова</h4>
+            <p className="text-sm text-muted-foreground">Психолог & Автор</p>
           </div>
-          <p className="mb-2">
+          <p className="mb-2 text-foreground">
             Здравейте! Аз съм сертифициран психолог с над 10 години опит в работата с хора от различни възрасти и с разнообразни предизвикателства.
           </p>
-          <p className="mb-2">
+          <p className="mb-2 text-foreground">
             Специализирам в когнитивно-поведенческа терапия и помагам на клиентите си да преодолеят трудности като тревожност, депресия, стрес и проблеми във взаимоотношенията.
           </p>
-          <p>
+          <p className="text-foreground">
             В моята практика вярвам в създаването на безопасно и подкрепящо пространство, където всеки може да изследва мислите и чувствата си без страх от осъждане.
           </p>
         </div>
@@ -141,7 +141,7 @@ const ConsultationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =
     <Dialog isOpen={isOpen} onClose={onClose} title="Заявка за консултация">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-zinc-400 mb-1">
+          <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">
             Име и фамилия
           </label>
           <input
@@ -151,13 +151,13 @@ const ConsultationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 focus:border-green-500/50 outline-none rounded-lg text-zinc-200"
+            className="w-full px-4 py-2.5 bg-background border border-input focus:border-green-500/50 outline-none rounded-lg text-foreground"
             placeholder="Вашето име"
           />
         </div>
         
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-zinc-400 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">
             Имейл
           </label>
           <input
@@ -167,13 +167,13 @@ const ConsultationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 focus:border-green-500/50 outline-none rounded-lg text-zinc-200"
+            className="w-full px-4 py-2.5 bg-background border border-input focus:border-green-500/50 outline-none rounded-lg text-foreground"
             placeholder="вашият@имейл.com"
           />
         </div>
         
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-zinc-400 mb-1">
+          <label htmlFor="phone" className="block text-sm font-medium text-muted-foreground mb-1">
             Телефон (незадължително)
           </label>
           <input
@@ -182,13 +182,13 @@ const ConsultationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 focus:border-green-500/50 outline-none rounded-lg text-zinc-200"
+            className="w-full px-4 py-2.5 bg-background border border-input focus:border-green-500/50 outline-none rounded-lg text-foreground"
             placeholder="Телефонен номер"
           />
         </div>
         
         <div>
-          <label htmlFor="service" className="block text-sm font-medium text-zinc-400 mb-1">
+          <label htmlFor="service" className="block text-sm font-medium text-muted-foreground mb-1">
             Тип услуга
           </label>
           <select
@@ -196,7 +196,7 @@ const ConsultationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =
             name="service"
             value={formData.service}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 focus:border-green-500/50 outline-none rounded-lg text-zinc-200"
+            className="w-full px-4 py-2.5 bg-background border border-input focus:border-green-500/50 outline-none rounded-lg text-foreground"
           >
             <option value="individual">Индивидуална терапия</option>
             <option value="couples">Семейно консултиране</option>
@@ -207,7 +207,7 @@ const ConsultationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =
         </div>
         
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-zinc-400 mb-1">
+          <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-1">
             Съобщение
           </label>
           <textarea
@@ -217,7 +217,7 @@ const ConsultationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =
             required
             value={formData.message}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 focus:border-green-500/50 outline-none rounded-lg text-zinc-200 resize-none"
+            className="w-full px-4 py-2.5 bg-background border border-input focus:border-green-500/50 outline-none rounded-lg text-foreground resize-none"
             placeholder="Опишете накратко вашето запитване..."
           />
         </div>
@@ -226,7 +226,7 @@ const ConsultationModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-zinc-300 hover:text-white transition-colors"
+            className="px-4 py-2 text-foreground/70 hover:text-foreground transition-colors"
           >
             Отказ
           </button>
@@ -268,7 +268,7 @@ const FreeBookSignup = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5, duration: 0.5 }}
-      className="mt-8 bg-gradient-to-br from-zinc-800/40 to-zinc-900/40 backdrop-blur-sm border border-zinc-700/40 p-4 rounded-lg max-w-md mx-auto relative"
+      className="mt-8 bg-gradient-to-br from-secondary/80 to-secondary/60 backdrop-blur-sm border border-border p-4 rounded-lg max-w-md mx-auto relative"
     >
       <motion.div 
         className="absolute -top-3 -left-3 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg"
@@ -286,8 +286,8 @@ const FreeBookSignup = () => {
         Ограничена оферта
       </motion.div>
       
-      <h3 className="text-lg font-bold text-green-500 mb-2">Получете безплатна електронна книга</h3>
-      <p className="text-zinc-300 text-sm mb-4">
+      <h3 className="text-lg font-bold text-green-500 dark:text-primary mb-2">Получете безплатна електронна книга</h3>
+      <p className="text-foreground text-sm mb-4">
         Абонирайте се за нашия бюлетин и получете безплатно копие от моята въвеждаща книга за психология на ежедневието.
       </p>
       
@@ -295,7 +295,7 @@ const FreeBookSignup = () => {
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="bg-green-500/20 border border-green-500/30 text-green-300 p-3 rounded-lg text-center"
+          className="bg-green-500/20 border border-green-500/30 text-green-700 dark:text-green-300 p-3 rounded-lg text-center"
         >
           <p className="font-medium">Благодарим ви!</p>
           <p className="text-sm">Изпратихме линк за изтегляне на вашия имейл.</p>
@@ -308,7 +308,7 @@ const FreeBookSignup = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="Вашият имейл адрес" 
-            className="flex-1 px-3 py-2 bg-zinc-800 border border-zinc-700 focus:border-green-500/50 outline-none rounded-lg text-zinc-200 text-sm"
+            className="flex-1 px-3 py-2 bg-background border border-input focus:border-green-500/50 outline-none rounded-lg text-foreground text-sm"
           />
           <button 
             type="submit"
@@ -354,7 +354,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="text-slat-100 overflow-hidden py-16 md:py-28 relative" id="hero">
+    <section className="overflow-hidden py-16 md:py-28 relative" id="hero">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-green-900/5 via-transparent to-zinc-800/10 pointer-events-none" />
       
@@ -372,7 +372,7 @@ const Hero = () => {
                   onClick={toggleDialog}
                   className="cursor-pointer transition-transform hover:scale-105 relative group bg-transparent border-0 p-0"
                 >
-                  <Avatar size="lg" className="pointer-events-auto shadow-md border border-zinc-800 group-hover:border-green-500/50 transition-colors">
+                  <Avatar size="lg" className="pointer-events-auto shadow-md border border-border group-hover:border-green-500/50 transition-colors">
                     <AvatarImage 
                       src="/images/avatar.jpg" 
                       alt="Елис" 
@@ -381,21 +381,21 @@ const Hero = () => {
                         target.style.display = 'none';
                       }}
                     />
-                    <AvatarFallback className="text-xl font-semibold text-green-500 bg-zinc-800">ЕД</AvatarFallback>
+                    <AvatarFallback className="text-xl font-semibold text-green-500 dark:text-primary bg-secondary">ЕД</AvatarFallback>
                   </Avatar>
                   {/* Simplified pulse effect to avoid rendering issues */}
                   <span className="absolute inset-0 rounded-full bg-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
                 <div>
-                  <h2 className="text-lg font-medium text-green-500">Елис Димитрова</h2>
-                  <p className="text-sm text-zinc-400">Психолог & Автор</p>
+                  <h2 className="text-lg font-medium text-green-500 dark:text-primary">Елис Димитрова</h2>
+                  <p className="text-sm text-muted-foreground">Психолог & Автор</p>
                 </div>
               </div>
             </Reveal>
             <Reveal>
-              <h1 className="mb-6 mt-2 text-4xl font-medium !leading-[1.3] md:text-6xl">
+              <h1 className="mb-6 mt-2 text-4xl font-medium !leading-[1.3] md:text-6xl text-foreground">
                 Здравейте, аз съм <span className="relative inline-block">
-                  Елис<span className="text-green-500">.</span>
+                  Елис<span className="text-green-500 dark:text-primary">.</span>
                   <motion.span 
                     className="absolute bottom-0 left-0 h-1 bg-green-500/30 rounded-full" 
                     initial={{ width: 0 }}
@@ -406,26 +406,26 @@ const Hero = () => {
               </h1>
             </Reveal>
             <Reveal>
-              <p className="mb-3 text-lg text-zinc-400">
-                Аз съм <span className="font-semibold text-green-500">психолог и психотерапевт</span> с над 10 години опит.
+              <p className="mb-3 text-lg text-muted-foreground">
+                Аз съм <span className="font-semibold text-green-500 dark:text-primary">психолог и психотерапевт</span> с над 10 години опит.
                 Помагам на хората да постигнат емоционално благополучие.
               </p>
             </Reveal>
             <Reveal>
-              <p className="leading-relaxed max-w-xl text-sm text-zinc-300 md:text-base mb-6">
+              <p className="leading-relaxed max-w-xl text-sm text-foreground md:text-base mb-6">
                 Като дипломиран психолог и автор, помагам на хората да създадат осъзнат, мечтан живот.
               </p>
             </Reveal>
             <Reveal>
               <div className="flex flex-wrap gap-3 mt-2">
                 <OutlineButton
-                  className="before:bg-green-500 hover:text-white hover:border-green-500 bg-green-500 text-zinc-100 border-green-500 shadow-lg shadow-green-800/20 pointer-events-auto"
+                  className="before:bg-green-500 hover:text-white hover:border-green-500 bg-green-500 text-white border-green-500 shadow-lg shadow-green-800/20 pointer-events-auto"
                   onClick={openConsultation}
                 >
                   КОНСУЛТАЦИЯ
                 </OutlineButton>
                 <OutlineButton
-                  className="before:bg-transparent hover:text-green-500 hover:border-green-500 bg-transparent text-zinc-100 border-zinc-400 pointer-events-auto"
+                  className="before:bg-transparent hover:text-green-500 hover:border-green-500 bg-transparent text-foreground border-muted-foreground pointer-events-auto"
                   onClick={() => {
                     try {
                       const booksSection = document.getElementById("books");

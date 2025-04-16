@@ -30,10 +30,10 @@ export const SideBar = () => {
       initial={{ x: -70 }}
       animate={{ x: 0 }}
       transition={{ duration: 0.5 }}
-      className="no-scrollbar bg-zinc-950 h-screen sticky top-0 left-0 z-20 flex flex-col items-center overflow-y-scroll border-r border-zinc-800/50"
+      className="no-scrollbar bg-background h-screen sticky top-0 left-0 z-20 flex flex-col items-center overflow-y-scroll border-r border-border/50"
     >
-      <span className="shrink-0 text-xl font-black leading-[1] size-10 flex items-center justify-center my-4">
-        Е<span className="text-green-500">.</span>
+      <span className="shrink-0 text-xl font-black leading-[1] size-10 flex items-center justify-center my-4 text-foreground">
+        Е<span className="text-green-500 dark:text-primary">.</span>
       </span>
       <SideBarLink
         selected={selected}

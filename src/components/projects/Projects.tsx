@@ -43,11 +43,11 @@ export const Projects = () => {
           transition={{ duration: 0.5 }}
           className="mb-8 max-w-2xl"
         >
-          <h3 className="flex items-center gap-2 text-xl font-bold text-zinc-100 mb-3">
-            <IoBookOutline className="text-green-500 text-2xl" />
+          <h3 className="flex items-center gap-2 text-xl font-bold text-foreground mb-3">
+            <IoBookOutline className="text-green-500 dark:text-primary text-2xl" />
             <span>Моите публикации</span>
           </h3>
-          <p className="text-zinc-300">
+          <p className="text-foreground/80">
             Книгите са плод на дългогодишния ми опит като психолог и отразяват моето разбиране за човешката психика, взаимоотношенията и личностното развитие. Във всяка от тях споделям практически съвети, които можете да приложите в ежедневието си.
           </p>
         </motion.div>
@@ -56,7 +56,7 @@ export const Projects = () => {
       {/* Enhanced filter categories */}
       <div className="relative mb-12">
         <div className="mb-4">
-          <h4 className="text-sm font-medium text-zinc-400 uppercase tracking-wider mb-3">Филтрирайте по категория</h4>
+          <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">Филтрирайте по категория</h4>
           <div className="w-20 h-1 bg-green-500/50 rounded-full mb-4"></div>
         </div>
         
@@ -68,7 +68,7 @@ export const Projects = () => {
               className={`px-4 py-1.5 rounded-full text-sm transition-all ${
                 (category === "Всички" && !selectedCategory) || selectedCategory === category
                   ? "bg-green-500 text-white font-medium shadow-lg shadow-green-800/20"
-                  : "bg-zinc-800/70 text-zinc-300 hover:bg-zinc-700/80 border border-zinc-700/50 hover:border-green-500/30"
+                  : "bg-secondary/80 text-foreground hover:bg-secondary border border-border hover:border-green-500/30"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -82,7 +82,7 @@ export const Projects = () => {
       {/* Books grid with staggered animation */}
       <div ref={booksRef} className="relative">
         {/* Grid background pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(#3f3f46_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] -z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(#3f3f46_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] -z-10 dark:opacity-100 opacity-30" />
         
         <AnimatePresence mode="wait">
           <motion.div
@@ -113,10 +113,10 @@ export const Projects = () => {
             animate={{ opacity: 1 }}
             className="py-12 text-center"
           >
-            <p className="text-zinc-400 text-lg">Няма намерени книги в тази категория.</p>
+            <p className="text-muted-foreground text-lg">Няма намерени книги в тази категория.</p>
             <button 
               onClick={() => setSelectedCategory(null)}
-              className="mt-4 text-green-500 hover:underline"
+              className="mt-4 text-green-500 dark:text-primary hover:underline"
             >
               Покажи всички книги
             </button>
@@ -130,10 +130,10 @@ export const Projects = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3, duration: 0.5 }}
-        className="mt-16 p-6 bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 border border-zinc-700/30 rounded-lg text-center"
+        className="mt-16 p-6 bg-gradient-to-br from-secondary/70 to-background/70 border border-border/50 rounded-lg text-center"
       >
-        <h3 className="text-xl font-bold text-green-500 mb-3">Нуждаете се от персонализирани препоръки за четене?</h3>
-        <p className="text-zinc-300 mb-5 max-w-2xl mx-auto">
+        <h3 className="text-xl font-bold text-green-500 dark:text-primary mb-3">Нуждаете се от персонализирани препоръки за четене?</h3>
+        <p className="text-foreground/80 mb-5 max-w-2xl mx-auto">
           Ако се интересувате от конкретна тема или търсите книга, която да ви помогне с определено предизвикателство, не се колебайте да се свържете с мен за лични препоръки.
         </p>
         <button 

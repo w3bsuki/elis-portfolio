@@ -28,10 +28,10 @@ export const SideBarLink = ({
       onClick={() => {
         setSelected(value);
       }}
-      className={`writing-vertical h-24 shrink-0 flex items-center justify-center border-r-2 text-sm transition-all w-full ${
+      className={`writing-vertical h-24 shrink-0 flex items-center justify-center border-r-2 text-sm transition-all w-full text-foreground ${
         selected === value
-          ? "bg-zinc-800 border-green-500 opacity-100"
-          : "border-transparent hover:border-r-zinc-50 opacity-50 hover:bg-zinc-900"
+          ? "bg-secondary border-green-500 dark:border-primary opacity-100"
+          : "border-transparent hover:border-r-foreground/30 opacity-50 hover:bg-secondary/70"
       }`}
     >
       {children}

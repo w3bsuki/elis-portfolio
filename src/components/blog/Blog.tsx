@@ -29,11 +29,11 @@ export const Blog = () => {
           transition={{ duration: 0.5 }}
           className="mb-8 max-w-2xl"
         >
-          <h3 className="flex items-center gap-2 text-xl font-bold text-zinc-100 mb-3">
-            <BsPencilSquare className="text-green-500 text-2xl" />
+          <h3 className="flex items-center gap-2 text-xl font-bold text-zinc-800 dark:text-zinc-100 mb-3">
+            <BsPencilSquare className="text-green-500 dark:text-primary text-2xl" />
             <span>Мисли и идеи</span>
           </h3>
-          <p className="text-zinc-300">
+          <p className="text-zinc-600 dark:text-zinc-300">
             В моя блог споделям размисли, практически съвети и професионални наблюдения от психологическата практика. 
             Статиите са насочени към подобряване на емоционалното благосъстояние и личностното развитие.
           </p>
@@ -43,7 +43,7 @@ export const Blog = () => {
       {/* Category filters */}
       <div className="relative mb-12">
         <div className="mb-4">
-          <h4 className="text-sm font-medium text-zinc-400 uppercase tracking-wider mb-3">Филтрирайте по тема</h4>
+          <h4 className="text-sm font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-3">Филтрирайте по тема</h4>
           <div className="w-20 h-1 bg-green-500/50 rounded-full mb-4"></div>
         </div>
         
@@ -55,7 +55,7 @@ export const Blog = () => {
               className={`px-4 py-1.5 rounded-full text-sm transition-all ${
                 (category === "Всички" && !selectedCategory) || selectedCategory === category
                   ? "bg-green-500 text-white font-medium shadow-lg shadow-green-800/20"
-                  : "bg-zinc-800/70 text-zinc-300 hover:bg-zinc-700/80 border border-zinc-700/50 hover:border-green-500/30"
+                  : "bg-secondary/80 text-foreground hover:bg-secondary border border-border hover:border-green-500/30"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -69,7 +69,7 @@ export const Blog = () => {
       {/* Blog posts grid with animations */}
       <div className="relative">
         {/* Grid background pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(#3f3f46_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] -z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(#3f3f46_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] -z-10 dark:opacity-100 opacity-30" />
         
         <AnimatePresence mode="wait">
           <motion.div
@@ -100,10 +100,10 @@ export const Blog = () => {
             animate={{ opacity: 1 }}
             className="py-12 text-center"
           >
-            <p className="text-zinc-400 text-lg">Няма намерени статии по тази тема.</p>
+            <p className="text-zinc-600 dark:text-zinc-400 text-lg">Няма намерени статии по тази тема.</p>
             <button 
               onClick={() => setSelectedCategory(null)}
-              className="mt-4 text-green-500 hover:underline"
+              className="mt-4 text-green-600 dark:text-green-500 hover:underline"
             >
               Покажи всички статии
             </button>
@@ -117,17 +117,17 @@ export const Blog = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3, duration: 0.5 }}
-        className="mt-16 p-6 bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 border border-zinc-700/30 rounded-lg text-center"
+        className="mt-16 p-6 bg-gradient-to-br from-secondary/70 to-background/70 border border-border/50 rounded-lg text-center"
       >
-        <h3 className="text-xl font-bold text-green-500 mb-3">Абонирайте се за нови публикации</h3>
-        <p className="text-zinc-300 mb-5 max-w-2xl mx-auto">
+        <h3 className="text-xl font-bold text-green-600 dark:text-green-500 mb-3">Абонирайте се за нови публикации</h3>
+        <p className="text-foreground/80 mb-5 max-w-2xl mx-auto">
           Получавайте известия за нови статии, видеа и ресурси директно във вашата поща. Без спам, само качествено съдържание за личностно развитие.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
           <input 
             type="email" 
             placeholder="Вашият имейл адрес" 
-            className="flex-1 px-4 py-2.5 bg-zinc-800 border border-zinc-700 focus:border-green-500/50 outline-none rounded-lg text-zinc-200"
+            className="flex-1 px-4 py-2.5 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 focus:border-green-500/50 outline-none rounded-lg text-zinc-800 dark:text-zinc-200"
           />
           <button 
             className="px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors shadow-lg shadow-green-800/20"

@@ -9,7 +9,7 @@ const InteractiveChip = memo(({ children }: { children: React.ReactNode }) => {
     <motion.div
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="text-xs px-2.5 py-1.5 rounded-full bg-zinc-800/70 border border-green-500/40 text-zinc-300 backdrop-blur-sm shadow-sm hover:border-green-500/70 hover:bg-zinc-800/90 hover:text-white transition-all duration-200 cursor-pointer"
+      className="text-xs px-2.5 py-1.5 rounded-full bg-zinc-100/80 dark:bg-zinc-800/70 border border-green-500/40 text-zinc-700 dark:text-zinc-300 backdrop-blur-sm shadow-sm hover:border-green-500/70 hover:bg-zinc-200/90 dark:hover:bg-zinc-800/90 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 cursor-pointer"
     >
       {children}
     </motion.div>
@@ -27,9 +27,9 @@ const SkillGroup = memo(({ title, icon, skills }: {
   return (
     <Reveal>
       <div>
-        <h4 className="flex items-center mb-3 border-b border-zinc-700/30 pb-2">
+        <h4 className="flex items-center mb-3 border-b border-zinc-200/60 dark:border-zinc-700/30 pb-2">
           {icon}
-          <span className="font-medium ml-2 text-zinc-200">{title}</span>
+          <span className="font-medium ml-2 text-zinc-800 dark:text-zinc-200">{title}</span>
         </h4>
         <div className="flex flex-wrap gap-2 mb-5">
           {skills.map((skill, index) => (
@@ -68,7 +68,7 @@ export const Stats = memo(() => {
   ];
 
   return (
-    <div className="relative p-4 bg-zinc-800/20 rounded-lg border border-zinc-700/30">
+    <div className="relative p-4 bg-zinc-50/60 dark:bg-zinc-800/20 rounded-lg border border-zinc-200/60 dark:border-zinc-700/30">
       <SkillGroup 
         title="Професионални умения"
         icon={<AiFillHeart className="text-green-500 text-xl" />}

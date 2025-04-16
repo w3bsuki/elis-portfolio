@@ -3,13 +3,14 @@ import React from "react";
 import { SiCodepen, SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { OutlineButton } from "../buttons/OutlineButton";
 import { MobileNav } from "./MobileNav";
+import { ThemeToggle } from "../ui/theme-toggle";
 
 export const Header = () => {
   return (
-    <header className="h-[72px] px-4 flex items-center justify-between sticky top-0 z-20 bg-zinc-900/90 backdrop-blur-md border-b border-zinc-800/50">
+    <header className="h-[72px] px-4 flex items-center justify-between sticky top-0 z-20 bg-background/90 backdrop-blur-md border-b border-border/50">
       <div className="flex items-center gap-4">
         <span className="text-xl font-black hidden md:flex">
-          Елис<span className="text-green-500">.</span>
+          Елис<span className="text-green-500 dark:text-primary">.</span>
         </span>
         <div className="hidden md:block">
           <MyLinks />
@@ -17,8 +18,9 @@ export const Header = () => {
       </div>
       
       <div className="flex items-center gap-3">
+        <ThemeToggle />
         <OutlineButton 
-          className="hidden md:flex before:bg-green-500 hover:text-white hover:border-green-500"
+          className="hidden md:flex before:bg-green-500 hover:text-white hover:border-green-500 dark:before:bg-primary dark:hover:border-primary"
           onClick={() => window.open("/resume.pdf")}
         >
           CV
@@ -32,7 +34,7 @@ export const Header = () => {
 export const MyLinks = () => (
   <div className="flex items-center text-lg gap-4">
     <Link
-      className="text-zinc-300 hover:text-green-400 transition-colors"
+      className="text-foreground/80 hover:text-green-400 transition-colors dark:hover:text-primary"
       href="https://www.linkedin.com"
       target="_blank"
       rel="nofollow"
@@ -41,7 +43,7 @@ export const MyLinks = () => (
       <SiLinkedin />
     </Link>
     <Link
-      className="text-zinc-300 hover:text-green-400 transition-colors"
+      className="text-foreground/80 hover:text-green-400 transition-colors dark:hover:text-primary"
       href="https://www.github.com"
       target="_blank"
       rel="nofollow"
@@ -50,7 +52,7 @@ export const MyLinks = () => (
       <SiGithub />
     </Link>
     <Link
-      className="text-zinc-300 hover:text-green-400 transition-colors"
+      className="text-foreground/80 hover:text-green-400 transition-colors dark:hover:text-primary"
       href="https://www.x.com"
       target="_blank"
       rel="nofollow"
@@ -59,7 +61,7 @@ export const MyLinks = () => (
       <SiX />
     </Link>
     <Link
-      className="text-zinc-300 hover:text-green-400 transition-colors"
+      className="text-foreground/80 hover:text-green-400 transition-colors dark:hover:text-primary"
       href="https://www.codepen.io"
       target="_blank"
       rel="nofollow"

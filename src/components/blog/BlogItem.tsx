@@ -58,7 +58,7 @@ export const BlogItem = ({
         initial="hidden"
         animate={controls}
         transition={{ duration: 0.6 }}
-        className="border border-zinc-800/60 rounded-xl overflow-hidden bg-gradient-to-br from-zinc-900/60 to-zinc-950/60 hover:shadow-xl hover:shadow-green-900/5 transition-all duration-300"
+        className="border border-zinc-800/60 dark:border-zinc-800/60 border-zinc-300/60 rounded-xl overflow-hidden bg-gradient-to-br from-zinc-50/90 to-zinc-100/90 dark:from-zinc-900/60 dark:to-zinc-950/60 hover:shadow-xl hover:shadow-green-900/5 transition-all duration-300"
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
           {/* Image side */}
@@ -69,7 +69,7 @@ export const BlogItem = ({
             onClick={() => setIsOpen(true)}
           >
             {/* Background pattern */}
-            <div className="absolute inset-0 bg-[radial-gradient(#2B2B2B_1px,transparent_1px)] [background-size:8px_8px] opacity-25 z-0"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(#CCCCCC_1px,transparent_1px)] dark:bg-[radial-gradient(#2B2B2B_1px,transparent_1px)] [background-size:8px_8px] opacity-25 z-0"></div>
             
             {/* Image */}
             <div className="absolute inset-0 z-10">
@@ -79,7 +79,7 @@ export const BlogItem = ({
                 className="w-full h-full object-cover transition-transform duration-500 ease-out"
                 style={{ transform: hovered ? 'scale(1.08)' : 'scale(1)' }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-100 via-zinc-100/40 to-transparent dark:from-zinc-950 dark:via-zinc-900/40 dark:to-transparent"></div>
             </div>
             
             {/* Hover overlay */}
@@ -97,7 +97,7 @@ export const BlogItem = ({
               {tags.slice(0, 2).map((tag, index) => (
                 <span 
                   key={index}
-                  className="text-xs px-2 py-1 bg-zinc-900/80 backdrop-blur-sm border border-green-500/30 text-green-400 rounded-full"
+                  className="text-xs px-2 py-1 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm border border-green-500/30 text-green-600 dark:text-green-400 rounded-full"
                 >
                   {tag}
                 </span>
@@ -110,7 +110,7 @@ export const BlogItem = ({
             {/* Decorative element */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/5 rounded-full blur-xl -z-10"></div>
             
-            <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-zinc-400">
+            <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-zinc-600 dark:text-zinc-400">
               <div className="flex items-center gap-1">
                 <BiCalendar className="text-green-500" />
                 <span>{date}</span>
@@ -125,11 +125,11 @@ export const BlogItem = ({
               </div>
             </div>
             
-            <h3 className="text-xl sm:text-2xl font-bold mb-3 text-zinc-100 hover:text-green-400 transition-colors cursor-pointer" onClick={() => setIsOpen(true)}>
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 text-zinc-800 dark:text-zinc-100 hover:text-green-600 dark:hover:text-green-400 transition-colors cursor-pointer" onClick={() => setIsOpen(true)}>
               {title}
             </h3>
             
-            <p className="text-zinc-300 mb-5 line-clamp-3">{excerpt}</p>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-5 line-clamp-3">{excerpt}</p>
             
             <div className="flex justify-between items-center">
               <div className="flex flex-wrap gap-2">
@@ -142,7 +142,7 @@ export const BlogItem = ({
               
               <button
                 onClick={() => setIsOpen(true)}
-                className="group inline-flex items-center gap-1 font-medium text-green-500 hover:text-green-400 transition-colors"
+                className="group inline-flex items-center gap-1 font-medium text-green-600 hover:text-green-500 dark:text-green-500 dark:hover:text-green-400 transition-colors"
               >
                 Прочети повече 
                 <span className="transform transition-transform duration-300 group-hover:translate-x-1">→</span>

@@ -37,7 +37,7 @@ export const Project = memo(({
         <div className="w-full max-w-[240px] aspect-[2/3] rounded-2xl overflow-hidden shadow-xl shadow-black/30 group transition-all duration-300 hover:shadow-2xl hover:shadow-green-900/20">
           <FlipCard
             front={
-              <FlipCardFront className="bg-gradient-to-b from-zinc-800 to-zinc-900 border border-zinc-700/50 relative overflow-hidden">
+              <FlipCardFront className="bg-gradient-to-b from-secondary to-background border border-border/50 relative overflow-hidden">
                 {/* Cover image with overlay */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img
@@ -45,7 +45,7 @@ export const Project = memo(({
                     alt={`Корица на книгата ${title}.`}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-zinc-900/90"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background/90"></div>
                 </div>
                 
                 {/* Book title and badges */}
@@ -65,23 +65,23 @@ export const Project = memo(({
                 </div>
                 
                 {/* Flip hint */}
-                <div className="absolute top-2 right-2 bg-zinc-800/80 backdrop-blur-sm p-1.5 rounded-full text-xs text-zinc-400 border border-zinc-700/50 animate-pulse">
+                <div className="absolute top-2 right-2 bg-secondary/80 backdrop-blur-sm p-1.5 rounded-full text-xs text-muted-foreground border border-border/50 animate-pulse">
                   Обърни
                 </div>
               </FlipCardFront>
             }
             back={
-              <FlipCardBack className="bg-gradient-to-b from-zinc-800 to-zinc-900 border border-zinc-700/50 flex flex-col p-5 justify-between text-left">
+              <FlipCardBack className="bg-gradient-to-b from-secondary to-background border border-border/50 flex flex-col p-5 justify-between text-left">
                 <div>
-                  <h3 className="font-bold text-xl text-green-400 mb-3">{title}</h3>
-                  <p className="text-zinc-300 text-sm leading-relaxed mb-4 line-clamp-4">
+                  <h3 className="font-bold text-xl text-green-400 dark:text-primary mb-3">{title}</h3>
+                  <p className="text-foreground text-sm leading-relaxed mb-4 line-clamp-4">
                     {description}
                   </p>
                   <div className="flex flex-wrap gap-1 mb-4">
                     {tech.map((tag, index) => (
                       <span 
                         key={index} 
-                        className="text-xs px-2 py-1 bg-zinc-800 border border-zinc-700/50 text-zinc-300 rounded-full"
+                        className="text-xs px-2 py-1 bg-secondary border border-border/50 text-foreground rounded-full"
                       >
                         {tag}
                       </span>
@@ -103,7 +103,7 @@ export const Project = memo(({
                       target="_blank" 
                       rel="nofollow"
                       onClick={(e) => e.stopPropagation()}
-                      className="flex-1 flex items-center justify-center gap-2 py-2 text-xs border border-zinc-700 hover:border-green-500/50 text-zinc-300 hover:text-green-400 rounded-lg transition-colors"
+                      className="flex-1 flex items-center justify-center gap-2 py-2 text-xs border border-border hover:border-green-500/50 text-foreground hover:text-green-500 rounded-lg transition-colors"
                     >
                       <AiFillBook /> Прочети
                     </Link>
@@ -112,7 +112,7 @@ export const Project = memo(({
                       target="_blank" 
                       rel="nofollow"
                       onClick={(e) => e.stopPropagation()}
-                      className="flex-1 flex items-center justify-center gap-2 py-2 text-xs border border-zinc-700 hover:border-green-500/50 text-zinc-300 hover:text-green-400 rounded-lg transition-colors"
+                      className="flex-1 flex items-center justify-center gap-2 py-2 text-xs border border-border hover:border-green-500/50 text-foreground hover:text-green-500 rounded-lg transition-colors"
                     >
                       <AiOutlineShoppingCart /> Купи
                     </Link>
@@ -131,10 +131,10 @@ export const Project = memo(({
           whileTap={{ scale: 0.98 }}
         >
           <div className="flex items-center gap-3 w-full">
-            <h4 className="font-bold text-base shrink-0 text-zinc-100 group-hover:text-green-400 transition-colors">
+            <h4 className="font-bold text-base shrink-0 text-foreground group-hover:text-green-500 transition-colors">
               {title}
             </h4>
-            <div className="w-full h-[1px] bg-zinc-700 group-hover:bg-green-500/30 transition-colors" />
+            <div className="w-full h-[1px] bg-border group-hover:bg-green-500/30 transition-colors" />
           </div>
         </motion.div>
       </div>

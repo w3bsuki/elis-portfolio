@@ -38,7 +38,7 @@ export function Dialog({ isOpen, onClose, title, children, className }: DialogPr
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
@@ -53,20 +53,20 @@ export function Dialog({ isOpen, onClose, title, children, className }: DialogPr
               leaveTo="opacity-0 scale-95"
             >
               <HeadlessDialog.Panel className={cn(
-                "w-full max-w-md transform overflow-hidden rounded-lg bg-zinc-900 border border-zinc-800 p-6 text-left align-middle shadow-xl transition-all",
+                "w-full max-w-md transform overflow-hidden rounded-lg bg-background border border-border p-6 text-left align-middle shadow-xl transition-all",
                 className
               )}>
                 {title && (
                   <div className="flex items-center justify-between mb-4">
                     <HeadlessDialog.Title
                       as="h3"
-                      className="text-xl font-bold leading-6 text-green-500"
+                      className="text-xl font-bold leading-6 text-green-500 dark:text-primary"
                     >
                       {title}
                     </HeadlessDialog.Title>
                     <button
                       type="button"
-                      className="text-zinc-300 hover:text-white transition-colors"
+                      className="text-foreground/70 hover:text-foreground transition-colors"
                       onClick={onClose}
                       aria-label="Затвори диалога"
                       title="Затвори"
@@ -75,7 +75,7 @@ export function Dialog({ isOpen, onClose, title, children, className }: DialogPr
                     </button>
                   </div>
                 )}
-                <div className="mt-2 text-zinc-300">
+                <div className="mt-2 text-foreground">
                   {children}
                 </div>
               </HeadlessDialog.Panel>

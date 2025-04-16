@@ -4,6 +4,9 @@ import { HiOutlineX } from "react-icons/hi";
 import { BiCalendar, BiUser, BiTimeFive, BiShare, BiBookmark } from "react-icons/bi";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import { IoClose, IoArrowBack } from "react-icons/io5";
+import { BiFacebook, BiTwitter, BiLinkAlt } from "react-icons/bi";
 
 interface Props {
   isOpen: boolean;
@@ -34,205 +37,135 @@ export const BlogModal = ({
     return time < 1 ? 1 : time;
   }, [content]);
 
+  const handleBackdropClick = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <>
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-50"
-          onClose={() => setIsOpen(false)}
-        >
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleBackdropClick}
+          />
+          
+          {/* Modal */}
+          <motion.div
+            className="fixed inset-0 md:inset-24 z-50 flex items-start justify-center md:items-center overflow-y-auto"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ type: "spring", damping: 30, stiffness: 500 }}
           >
-            <div className="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
+            <div className="relative w-full max-w-5xl mx-auto overflow-hidden rounded-xl bg-white dark:bg-zinc-900 shadow-2xl flex flex-col max-h-full">
+              {/* Close button */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute top-4 right-4 z-50 bg-white dark:bg-zinc-800 text-zinc-800 dark:text-white rounded-full p-2 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors shadow-lg"
+                aria-label="Close modal"
               >
-                <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-gradient-to-b from-zinc-900 to-zinc-950 text-left align-middle shadow-2xl transition-all">
-                  {/* Close button */}
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="absolute top-4 right-4 z-20 bg-zinc-800/80 hover:bg-zinc-700 text-zinc-300 hover:text-white p-2 rounded-full transition-all duration-200 hover:scale-110"
-                    aria-label="Затвори статията"
-                  >
-                    <HiOutlineX className="text-xl" />
-                  </button>
+                <IoClose className="w-5 h-5" />
+              </button>
+              
+              {/* Header image */}
+              <div className="relative h-72 md:h-96 w-full">
+                <img
+                  src={imageUrl}
+                  alt={`Cover image for ${title}`}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-zinc-900 dark:via-transparent dark:to-transparent"></div>
+              </div>
+              
+              {/* Main content */}
+              <div className="relative p-6 md:p-10 w-full h-full overflow-y-auto">
+                <header className="mb-8">
+                  <div className="flex flex-wrap gap-3 mb-4">
+                    {tags.map((tag, index) => (
+                      <span 
+                        key={index} 
+                        className="text-xs px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 font-medium"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                   
-                  {/* Featured image with overlay */}
-                  <div className="relative h-72 md:h-80 w-full overflow-hidden">
-                    {/* Decorative elements */}
-                    <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-green-500/10 to-transparent opacity-60 z-10 pointer-events-none"></div>
-                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-green-500/10 rounded-full blur-3xl z-10 pointer-events-none"></div>
-                    
-                    <img
-                      src={imageUrl}
-                      alt={`Изображение към статията ${title}`}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/60 to-transparent"></div>
-                    
-                    {/* Title overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                      <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 leading-tight">
-                        {title}
-                      </h2>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {tags.map((tag, index) => (
-                          <span
-                            key={index}
-                            className="text-xs px-3 py-1 bg-zinc-800/80 backdrop-blur-sm border border-green-500/20 text-zinc-300 rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                  <h1 className="text-2xl md:text-4xl font-bold text-zinc-800 dark:text-white mb-4">
+                    {title}
+                  </h1>
+                  
+                  <div className="flex flex-wrap items-center gap-6 text-sm text-zinc-600 dark:text-zinc-400">
+                    <div className="flex items-center gap-2">
+                      <BiCalendar className="text-green-500" />
+                      <span>{date}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <BiUser className="text-green-500" />
+                      <span>{author}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <BiTimeFive className="text-green-500" />
+                      <span>{readingTime} мин. четене</span>
                     </div>
                   </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
-                    {/* Main content */}
-                    <div className="col-span-1 md:col-span-2 p-6 md:p-8">
-                      {/* Article metadata */}
-                      <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-zinc-400">
-                        <div className="flex items-center gap-1">
-                          <BiCalendar className="text-green-500" />
-                          <span>{date}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <BiUser className="text-green-500" />
-                          <span>{author}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <BiTimeFive className="text-green-500" />
-                          <span>{readingTime} мин. четене</span>
-                        </div>
-                      </div>
-
-                      {/* Article content */}
-                      <div 
-                        className="prose prose-invert prose-zinc prose-p:text-zinc-300 prose-headings:text-zinc-100 prose-strong:text-green-400 prose-a:text-green-400 prose-a:no-underline hover:prose-a:underline prose-li:text-zinc-300 max-w-none"
-                        dangerouslySetInnerHTML={{ __html: content }}
-                      />
-                      
-                      {/* Article footer with share links */}
-                      <div className="mt-8 pt-6 border-t border-zinc-800/40">
-                        <div className="flex flex-wrap justify-between items-center">
-                          <div className="mb-4 md:mb-0">
-                            <h4 className="text-sm text-zinc-400 mb-2">Споделете статията</h4>
-                            <div className="flex gap-2">
-                              <motion.button 
-                                whileHover={{ scale: 1.1 }} 
-                                whileTap={{ scale: 0.95 }}
-                                className="w-8 h-8 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full"
-                                aria-label="Споделете във Facebook"
-                              >
-                                <FaFacebookF size={14} />
-                              </motion.button>
-                              <motion.button 
-                                whileHover={{ scale: 1.1 }} 
-                                whileTap={{ scale: 0.95 }}
-                                className="w-8 h-8 flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white rounded-full"
-                                aria-label="Споделете в Twitter"
-                              >
-                                <FaTwitter size={14} />
-                              </motion.button>
-                              <motion.button 
-                                whileHover={{ scale: 1.1 }} 
-                                whileTap={{ scale: 0.95 }}
-                                className="w-8 h-8 flex items-center justify-center bg-blue-800 hover:bg-blue-900 text-white rounded-full"
-                                aria-label="Споделете в LinkedIn"
-                              >
-                                <FaLinkedinIn size={14} />
-                              </motion.button>
-                            </div>
-                          </div>
-                          
-                          <button
-                            onClick={() => setIsOpen(false)}
-                            className="px-5 py-2.5 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600 transition-colors shadow-lg shadow-green-900/20"
-                          >
-                            Затвори
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Sidebar */}
-                    <div className="col-span-1 hidden md:block p-8 bg-zinc-800/20 border-l border-zinc-800/30">
-                      {/* Author info */}
-                      <div className="mb-8">
-                        <h3 className="text-lg font-semibold text-zinc-100 mb-4">За автора</h3>
-                        <div className="flex items-center gap-4 mb-3">
-                          <div className="w-12 h-12 rounded-full bg-zinc-700 overflow-hidden">
-                            <img 
-                              src="/images/avatar.jpg" 
-                              alt={author}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).src = "https://via.placeholder.com/100";
-                              }}
-                            />
-                          </div>
-                          <div>
-                            <h4 className="font-medium text-zinc-100">{author}</h4>
-                            <p className="text-sm text-zinc-400">Психолог</p>
-                          </div>
-                        </div>
-                        <p className="text-sm text-zinc-300 mb-3">
-                          Елис е психолог с над 10 години опит в областта на личностното развитие и емоционалното благополучие.
-                        </p>
-                        <button className="text-sm text-green-500 hover:text-green-400">
-                          Виж всички статии →
+                </header>
+                
+                {/* Article content */}
+                <div 
+                  className="prose prose-zinc dark:prose-invert prose-headings:text-zinc-800 dark:prose-headings:text-zinc-100 prose-a:text-green-600 dark:prose-a:text-green-400 prose-img:rounded-xl max-w-none" 
+                  dangerouslySetInnerHTML={{__html: content}}
+                />
+                
+                {/* Article footer */}
+                <div className="mt-12 pt-6 border-t border-zinc-200 dark:border-zinc-800">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h4 className="text-sm font-semibold text-zinc-800 dark:text-white mb-2">
+                        Сподели статията
+                      </h4>
+                      <div className="flex gap-3">
+                        <button 
+                          className="text-zinc-600 dark:text-zinc-400 hover:text-green-500 dark:hover:text-green-400 transition-colors"
+                          aria-label="Share on Facebook"
+                        >
+                          <BiFacebook className="w-5 h-5" />
                         </button>
-                      </div>
-                      
-                      {/* Related topics */}
-                      <div className="mb-8">
-                        <h3 className="text-lg font-semibold text-zinc-100 mb-3">Свързани теми</h3>
-                        <div className="flex flex-wrap gap-2">
-                          {tags.map((tag, index) => (
-                            <span
-                              key={index}
-                              className="text-xs px-3 py-1.5 bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-full cursor-pointer hover:border-green-500/30 hover:text-green-400 transition-colors"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Save for later */}
-                      <div className="p-4 bg-zinc-800/40 border border-zinc-700/30 rounded-lg">
-                        <button className="w-full flex items-center justify-center gap-2 py-2 text-zinc-300 hover:text-green-400 transition-colors">
-                          <BiBookmark className="text-lg" />
-                          <span className="text-sm">Запази за по-късно</span>
+                        <button 
+                          className="text-zinc-600 dark:text-zinc-400 hover:text-green-500 dark:hover:text-green-400 transition-colors"
+                          aria-label="Share on Twitter"
+                        >
+                          <BiTwitter className="w-5 h-5" />
+                        </button>
+                        <button 
+                          className="text-zinc-600 dark:text-zinc-400 hover:text-green-500 dark:hover:text-green-400 transition-colors"
+                          aria-label="Copy link"
+                        >
+                          <BiLinkAlt className="w-5 h-5" />
                         </button>
                       </div>
                     </div>
+                    <button 
+                      onClick={() => setIsOpen(false)}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/40 transition-colors"
+                    >
+                      <IoArrowBack className="w-4 h-4" />
+                      Назад
+                    </button>
                   </div>
-                </Dialog.Panel>
-              </Transition.Child>
+                </div>
+              </div>
             </div>
-          </div>
-        </Dialog>
-      </Transition>
-    </>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
   );
-}; 
+};
+
+export default BlogModal; 
